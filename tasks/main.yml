@@ -1,0 +1,34 @@
+---
+- name: Create dnsfilter folder
+  file:
+    dest: "{{dnsfilter_workdir}}"
+    state: directory
+    mode: 0755
+
+- name: Download binary
+  get_url:
+    url: "{{dnsfilter_url}}"
+    dest: "{{dnsfilter_workdir}}/relay-linux-amd64"
+    mode: 0777
+    owner: root
+    group: root
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Template config file
+  template:
+    src: relay.conf.j2
+    dest: "{{dnsfilter_workdir}}/relay.conf"
+  notify: restart-dnsfilter
+
+- name: Template system service file
+  template:
+    src: dnsfilter.service.j2
+    dest: /etc/systemd/system/dnsfilter.service
+  notify: restart-dnsfilter
+
+- name: Enable service
+  service:
+    name: dnsfilter
+    state: started
+    enabled: yes
+  ignore_errors: "{{ ansible_check_mode }}"

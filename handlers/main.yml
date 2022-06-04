@@ -1,0 +1,5 @@
+- name: restart-dnsfilter
+  service:
+    name: dnsfilter
+    state: restarted
+    enabled: yes

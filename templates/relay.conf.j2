@@ -1,0 +1,21 @@
+# Proxy listening address, optional, defaults to :53
+#listen_addresses = [ "127.0.0.1:28000" ]
+
+# SO reuse port true/false, defaults to false
+so_reuse_port = true
+
+# Desired upstream use order, defaults to "udp", "tcp", "tcp-tls", set only one to disable the others
+upstream_order = [ "udp", "tcp", "tcp-tls" ]
+
+[log]
+# Console error log, defaults to "error", Set to "debug" for troubleshooting
+level = "{{dnsfilter_loglevel}}"
+
+[client]
+name = "{{dnsfilter_sitename}}"
+secret_key = "{{dnsfilter_sitekey}}"
+
+# Local DNS servers to forward domain specific requests
+[[local_dns_server]]
+addresses = {{dnsfilter_localresolvers}}
+local_domains = {{dnsfilter_localdomains}}

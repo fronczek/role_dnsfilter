@@ -1,0 +1,7 @@
+dnsfilter_url: https://download.dnsfilter.com/Relay/relay-linux-amd64
+dnsfilter_workdir: "/opt/dnsfilter"
+dnsfilter_loglevel: "error"
+dnsfilter_localresolvers: [ "9.9.9.9:53", "1.1.1.1:53" ]
+dnsfilter_localdomains: [ "bldrdoc.gov", "ntp.org", "3cx.com", "3cx.eu", "3cx.pl" ]
+dnsfilter_sitename: "My site"
+dnsfilter_sitekey: "some_secret_key"

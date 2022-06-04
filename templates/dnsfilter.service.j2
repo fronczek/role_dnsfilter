@@ -1,0 +1,11 @@
+[Unit]
+Description=DNSfilter relay service
+
+[Service]
+User=root
+WorkingDirectory={{dnsfilter_workdir}}
+ExecStart={{dnsfilter_workdir}}/relay-linux-amd64
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
